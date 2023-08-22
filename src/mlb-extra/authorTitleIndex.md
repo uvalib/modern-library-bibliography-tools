@@ -3,11 +3,6 @@ layout: page-layout.njk
 permalink: "authorTitleIndex.html"
 ---
 
----
-layout: page-layout.njk
-permalink: "authorTitleIndex.html"
----
-
 <style>@import url("https://mlbib.library.virginia.edu/css/style.css")</style>
 
 

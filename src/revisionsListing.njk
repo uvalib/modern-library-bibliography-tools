@@ -1,4 +1,4 @@
 ---
-permalink: "revisions.json"
+permalink: "json/revisions.json"
 ---
 {{ revisions | pickList('id', 'type','title', 'year', 'book', 'full') | dump | safe }}
