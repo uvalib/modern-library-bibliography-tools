@@ -4,6 +4,7 @@ const lunr = require('lunr');
 const MiniSearch = require('minisearch');
 const FlexSearch = require('flexsearch');
 const _ = require('lodash');
+const { markdownToTxt } = require('markdown-to-txt');
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -75,10 +76,38 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addFilter('yearSearchPick', function(...args){
       let document = args.shift();
-//      return documents;
-      return _.pickBy(document, (value,key)=>{ 
-        return !key.match(/^\d+$/) && key!=="full" && key!=="plainText";
-      });
+      let results = [];
+      for (const [key, value] of Object.entries(document)) {
+        if (key !== "id" && key !== "type" && key !== "books" && key !== "title" && key !== "year" && key !== "full" && key !== "searchContent" && key !== "plainText"  && !key.match(/^\d+$/)  ) {
+          results.push({
+            id: `anchor-${key}`,
+            title: key,
+            year: document.year,
+            plainText: value //markdownToTxt(value).replace(/\s+/g, " ")
+          });
+        }
+      }
+      //console.log(document.books);
+      for (const [key, value] of Object.entries(document.books)) {
+        results.push({
+          id: `anchor-${key}`,
+          title: key,
+          year: document.year,
+          plainText: markdownToTxt(value.full).replace(/\s+/g, " ")
+        });
+      }
+//      document.books.forEach( book=>{
+//        results.push({
+//          id: `anchor-${book.id}`,
+//          title: book.title,
+//          year: document.year,
+//          plainText: markdownToTxt(book.full).replace(/\s+/g, " ")
+//        });
+//      } )
+      return results;
+//      return _.pickBy(document, (value,key)=>{ 
+//        return !key.match(/^\d+$/) && key!=="full" && key!=="plainText";
+//      });
     } );
 
     eleventyConfig.addFilter('fuseIndex', function(...args){
