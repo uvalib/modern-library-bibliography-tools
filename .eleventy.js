@@ -96,18 +96,7 @@ module.exports = function(eleventyConfig) {
           plainText: markdownToTxt(value.full).replace(/\s+/g, " ")
         });
       }
-//      document.books.forEach( book=>{
-//        results.push({
-//          id: `anchor-${book.id}`,
-//          title: book.title,
-//          year: document.year,
-//          plainText: markdownToTxt(book.full).replace(/\s+/g, " ")
-//        });
-//      } )
       return results;
-//      return _.pickBy(document, (value,key)=>{ 
-//        return !key.match(/^\d+$/) && key!=="full" && key!=="plainText";
-//      });
     } );
 
     eleventyConfig.addFilter('fuseIndex', function(...args){
