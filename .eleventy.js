@@ -83,7 +83,7 @@ module.exports = function(eleventyConfig) {
             id: `anchor-${key}`,
             title: key,
             year: document.year,
-            plainText: value //markdownToTxt(value).replace(/\s+/g, " ")
+            plainText: markdownToTxt(value).replace(/\s+/g, " ")
           });
         }
       }
