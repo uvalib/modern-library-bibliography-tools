@@ -87,7 +87,7 @@ module.exports = function(eleventyConfig) {
           });
         }
       }
-      //console.log(document.books);
+      
       for (const [key, value] of Object.entries(document.books)) {
         results.push({
           id: `anchor-${key}`,
@@ -128,11 +128,7 @@ module.exports = function(eleventyConfig) {
       documents.forEach( doc=>document.add(doc) );
       let result = {}
       document.export((key,data)=>{
-//          let result = {};
           result[key] = data;
-//          result.key = key;
-//          result.fields = fields;  // need to know the fields in order to import the index
-//          callback(null, result);
       })
       callback(null, result);      
     })
