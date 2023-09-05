@@ -27,7 +27,8 @@ module.exports = async function() {
             year.year = year.title.match(/(\d\d\d\d)/)[1].trim();
             // grab the sections from the text
             match = [...contents.matchAll( /^###\s+(.*)$([^]+?)(?=###\s+\w+)/gim )];
-            match.forEach(m=> year[ _.camelCase(m[1]) ] = m[2].trim() )
+            //match.forEach(m=> year[ _.camelCase(m[1]) ] = m[2].trim() )
+            match.forEach(m=> year[ m[1].trim() ] = m[2].trim() )
             // grab the first para from the general section
             if (year.general) {
                 if (year.general.match(/\n/m))
@@ -38,7 +39,8 @@ module.exports = async function() {
             match = [...contents.matchAll( /^###\s+(\d+)\s*$([^]+?)(?=^###\s+\w+|$(?!\n))/gm )];
             if (match && match.length>0) {
                 year.books = {};
-                match.forEach(m=> year.books[ _.camelCase(m[1]) ]={full: m[2]});
+                //match.forEach(m=> year.books[ _.camelCase(m[1]) ]={full: m[2]});
+                match.forEach(m=> year.books[ m[1].trim() ]={full: m[2]});
             }
 
 //console.log(JSON.stringify(year))
