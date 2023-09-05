@@ -78,7 +78,7 @@ module.exports = function(eleventyConfig) {
       let document = args.shift();
       let results = [];
       for (const [key, value] of Object.entries(document)) {
-        if (key !== "id" && key !== "type" && key !== "books" && key !== "title" && key !== "year" && key !== "full" && key !== "searchContent" && key !== "plainText"  && !key.match(/^\d+$/)  ) {
+        if (key !== "id" && key !== "type" && key !== "books" && key !== "title" && key !== "year" && key !== "full" && key !== "searchContent" && key !== "plainText"  && !key.endsWith("First") && !key.match(/^\d+$/)  ) {
           results.push({
             id: `anchor-${key}`,
             title: key,
