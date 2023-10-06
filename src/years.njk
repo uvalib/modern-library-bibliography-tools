@@ -15,4 +15,10 @@ permalink: "year/{{ year.year }}.html"
   <sl-breadcrumb-item href="{{ '/year/' | url }}{{ year.year }}.html">{{ year.year }}</sl-breadcrumb-item>
 </sl-breadcrumb>
 
+<script type="module" src="https://unpkg.internal.lib.virginia.edu/web-components/latest/@uvalib/site-page-search/site-page-search.js"></script>
+<style>
+  mark.current { background-color: orange; }
+</style>
+<site-page-search disabled query-string-param="query">
 {{ year.full | addLinks('torchbearer','notes','book','jacketType') | markdown | addAnchors | safe }}
+</site-page-search>
